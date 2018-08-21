@@ -57,6 +57,11 @@
         ],
         "post-update-cmd": [
             "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "setup": [
+            "cd web && php core/scripts/drupal install config_installer --no-interaction",
+            "cd web && ../vendor/bin/drush pm-uninstall demo_umami_content && ../vendor/bin/drush enable demo_umami_content",
+            "cd web && php core/scripts/drupal quick-start config_installer --no-interaction"
         ]
     },
     "extra": {
@@ -85,6 +90,12 @@
         "enable-patching": true,
         "patchLevel": {
             "drupal/core": "-p2"
+        },
+        "patches": {
+            "drupal/config_installer": {
+                "Using with `core/scripts/drupal install` results in RuntimeException from Drush":
+                "https://www.drupal.org/files/issues/2018-08-14/config_installer-drush-container-is-not-initialized-2991182-2-D8.patch"
+            }
         }
     }
 }
