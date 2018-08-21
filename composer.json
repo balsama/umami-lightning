@@ -60,7 +60,7 @@
         ],
         "setup": [
             "cd web && php core/scripts/drupal install config_installer --no-interaction",
-            "cd web && ../vendor/bin/drush pm-uninstall demo_umami_content && ../vendor/bin/drush enable demo_umami_content",
+            "cd web && ../vendor/bin/drush pm:uninstall demo_umami_content && ../vendor/bin/drush pm:enable demo_umami_content",
             "cd web && php core/scripts/drupal quick-start config_installer --no-interaction"
         ]
     },
